@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Tulapos Marine Sanctuary</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: #f0f7ff;
+        color: #1a2e3b;
+        overflow-x: hidden;
+      }
+
+      /* ═══════════════════════════════════════
+         HEADER / NAV
+      ═══════════════════════════════════════ */
+      .header-area {
+        background: linear-gradient(135deg, #0a2342 0%, #0d3b6e 60%, #0e5a8a 100%) !important;
+        box-shadow: 0 4px 24px rgba(10,35,66,0.35) !important;
+        border-bottom: 2px solid rgba(0,180,216,0.3) !important;
+      }
+      .logo {
+        display: flex !important; flex-direction: column !important;
+        text-decoration: none !important; line-height: 1.15 !important;
+      }
+      .logo-main {
+        font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 800;
+        color: #ffffff !important; letter-spacing: 1px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.3); white-space: nowrap;
+      }
+      .logo-sub {
+        font-family: 'Poppins', sans-serif; font-size: 0.68rem; font-weight: 500;
+        color: #ffffff !important; letter-spacing: 3px; text-transform: uppercase;
+        opacity: 0.85; white-space: nowrap;
+      }
+      .main-nav .nav li a {
+        color: rgba(255,255,255,0.85) !important; font-weight: 500; font-size: 14px;
+        letter-spacing: 0.5px; transition: color 0.2s; position: relative;
+      }
+      .main-nav .nav li a::after {
+        content: ''; position: absolute; bottom: -4px; left: 0;
+        width: 0; height: 2px; background: #00b4d8; transition: width 0.25s; border-radius: 2px;
+      }
+      .main-nav .nav li a:hover::after,
+      .main-nav .nav li a.active::after { width: 100%; }
+      .main-nav .nav li a:hover,
+      .main-nav .nav li a.active { color: #90e0ef !important; }
+
+      /* ═══════════════════════════════════════
+         BANNER
+      ═══════════════════════════════════════ */
+      #section-1 { position: relative; }
+      #section-1::after {
+        content: ''; position: absolute; bottom: 0; left: 0;
+        width: 100%; height: 80px;
+        background: linear-gradient(to bottom, transparent, rgba(5,20,50,0.6));
+        pointer-events: none; z-index: 5;
+      }
+      .main-caption h2 {
+        font-size: 1.1rem !important; font-weight: 400 !important;
+        letter-spacing: 3px !important; text-transform: uppercase !important;
+        color: #90e0ef !important; text-shadow: 0 2px 10px rgba(0,0,0,0.4) !important;
+        margin-bottom: 10px !important;
+      }
+      .main-caption h1 {
+        font-size: clamp(2rem, 5vw, 3.8rem) !important; font-weight: 800 !important;
+        color: #ffffff !important; text-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+        line-height: 1.15 !important; margin-bottom: 20px !important;
+      }
+      .more-info {
+        background: rgba(10,35,66,0.7) !important; backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(0,180,216,0.25) !important; border-radius: 16px !important;
+        padding: 20px 24px !important; box-shadow: 0 8px 32px rgba(0,0,0,0.3) !important;
+      }
+      .more-info h4 {
+        color: #ffffff !important; font-size: 13px !important;
+        font-weight: 500 !important; line-height: 1.5 !important; margin: 8px 0 0 !important;
+      }
+      .more-info h4 span {
+        color: #90e0ef !important; font-weight: 600 !important;
+        font-size: 11px !important; letter-spacing: 1px !important; text-transform: uppercase !important;
+      }
+      .more-info .fa { color: #00b4d8 !important; font-size: 1.4rem !important; }
+      .main-button a {
+        background: linear-gradient(135deg, #0096c7, #00b4d8) !important;
+        color: #fff !important; border: none !important; border-radius: 10px !important;
+        padding: 10px 22px !important; font-size: 13px !important; font-weight: 600 !important;
+        letter-spacing: 0.5px !important; box-shadow: 0 4px 16px rgba(0,180,216,0.35) !important;
+        transition: all 0.25s !important; display: inline-block !important; text-decoration: none !important;
+      }
+      .main-button a:hover {
+        background: linear-gradient(135deg, #0077b6, #0096c7) !important;
+        transform: translateY(-2px) !important; box-shadow: 0 6px 20px rgba(0,180,216,0.45) !important;
+      }
+      .border-button a {
+        border: 2px solid #90e0ef !important; color: #90e0ef !important;
+        border-radius: 10px !important; padding: 10px 24px !important;
+        font-size: 13px !important; font-weight: 600 !important;
+        text-decoration: none !important; display: inline-block !important;
+        transition: all 0.25s !important; letter-spacing: 0.5px !important;
+      }
+      .border-button a:hover { background: #90e0ef !important; color: #0a2342 !important; }
+      .controls label .progressbar-fill {
+        background: linear-gradient(90deg, #00b4d8, #90e0ef) !important;
+      }
+
+      /* ═══════════════════════════════════════
+         VISIT SECTION — with background image
+      ═══════════════════════════════════════ */
+      .visit-country {
+        padding: 70px 0 80px;
+        position: relative;
+        background: url('assets/images/background-sea.jpg') center center / cover no-repeat fixed;
+      }
+      /* dark overlay so text stays readable */
+      .visit-country::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(5, 20, 50, 0.72);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .visit-country .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Section heading — white text on dark bg */
+      .section-heading h2 {
+        font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700;
+        color: #ffffff; line-height: 1.3;
+        margin-bottom: 16px; position: relative; padding-bottom: 18px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      }
+      .section-heading h2::after {
+        content: ''; position: absolute; bottom: 0; left: 0;
+        width: 60px; height: 3px;
+        background: linear-gradient(90deg, #00b4d8, #90e0ef); border-radius: 3px;
+      }
+      .section-heading p {
+        font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.8;
+      }
+
+      /* Cards — keep white but slightly translucent */
+      .item {
+        background: rgba(255,255,255,0.96);
+        border-radius: 20px; border: 1px solid rgba(0,180,216,0.25);
+        padding: 20px; margin-bottom: 22px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+        transition: transform 0.25s, box-shadow 0.25s;
+        overflow: hidden; position: relative;
+      }
+      .item::before {
+        content: ''; position: absolute; top: 0; left: 0;
+        width: 4px; height: 100%;
+        background: linear-gradient(to bottom, #0096c7, #00b4d8);
+        border-radius: 4px 0 0 4px;
+      }
+      .item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 14px 40px rgba(0,0,0,0.28);
+      }
+      .item.last-item { margin-bottom: 0; }
+
+      .item .image {
+        border-radius: 14px; overflow: hidden; height: 170px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      }
+      .item .image img {
+        width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s;
+      }
+      .item:hover .image img { transform: scale(1.06); }
+
+      .right-content h4 {
+        font-size: 1.2rem; font-weight: 700; color: #0a2342; margin-bottom: 4px;
+      }
+      .right-content > span {
+        display: inline-block;
+        background: linear-gradient(135deg, #0096c7, #00b4d8);
+        color: #fff; font-size: 11px; font-weight: 600;
+        letter-spacing: 1.5px; text-transform: uppercase;
+        padding: 3px 12px; border-radius: 99px; margin-bottom: 12px;
+      }
+      .right-content p { font-size: 13px; color: #4a6e82; line-height: 1.75; margin-bottom: 14px; }
+      .right-content .main-button { display: inline-block; margin-bottom: 14px; }
+      .right-content .main-button a {
+        background: linear-gradient(135deg, #0096c7, #00b4d8) !important;
+        color: #fff !important; border-radius: 8px !important;
+        padding: 7px 18px !important; font-size: 12px !important; font-weight: 600 !important;
+        text-decoration: none !important; display: inline-block !important;
+        box-shadow: 0 3px 12px rgba(0,180,216,0.3) !important;
+        transition: all 0.2s !important; letter-spacing: 0.4px !important;
+      }
+      .right-content .main-button a:hover {
+        background: linear-gradient(135deg, #0077b6, #0096c7) !important;
+        transform: translateY(-1px) !important;
+      }
+
+      .info {
+        list-style: none; padding: 0; margin: 0 0 8px;
+        display: flex; flex-wrap: wrap; gap: 10px;
+      }
+      .info li {
+        font-size: 12px; color: #4a6e82; background: #e8f4fb;
+        padding: 5px 12px; border-radius: 99px; font-weight: 500;
+        display: flex; align-items: center; gap: 6px;
+      }
+      .info li .fa { color: #0096c7; font-size: 12px; }
+
+      /* Pagination */
+      .page-numbers {
+        list-style: none; padding: 0; margin: 28px 0 0;
+        display: flex; gap: 8px; align-items: center;
+      }
+      .page-numbers li a {
+        display: flex; align-items: center; justify-content: center;
+        width: 38px; height: 38px; border-radius: 10px;
+        border: 1px solid rgba(0,180,216,0.4);
+        background: rgba(255,255,255,0.9);
+        color: #0096c7; font-size: 14px; font-weight: 600;
+        text-decoration: none; transition: all 0.2s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      }
+      .page-numbers li a:hover,
+      .page-numbers li.active a {
+        background: linear-gradient(135deg, #0096c7, #00b4d8);
+        color: #fff; border-color: #0096c7;
+        box-shadow: 0 4px 14px rgba(0,150,199,0.35);
+      }
+
+      /* Map sidebar */
+      .side-bar-map { position: sticky; top: 100px; }
+      #map {
+        border-radius: 20px; overflow: hidden;
+        border: 2px solid rgba(0,180,216,0.4);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      }
+      #map iframe { display: block; border-radius: 18px; }
+      .side-bar-map::before {
+        content: '📍 Our Location';
+        display: block; font-size: 13px; font-weight: 700;
+        color: #ffffff; letter-spacing: 0.5px;
+        margin-bottom: 12px; padding-left: 4px;
+        text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+      }
+
+      /* ═══════════════════════════════════════
+         FOOTER
+      ═══════════════════════════════════════ */
+      footer {
+        background: linear-gradient(135deg, #0a2342 0%, #0d3b6e 100%) !important;
+        padding: 28px 0 !important; margin-top: 0 !important;
+        border-top: 2px solid rgba(0,180,216,0.25);
+      }
+      footer p {
+        color: rgba(255,255,255,0.65) !important; font-size: 13px !important;
+        text-align: center !important; margin: 0 !important; line-height: 1.9 !important;
+      }
+      footer a {
+        color: #90e0ef !important; text-decoration: none !important;
+        font-weight: 600 !important; transition: color 0.2s !important;
+      }
+      footer a:hover { color: #ffffff !important; }
+
+      /* ═══════════════════════════════════════
+         RESPONSIVE
+      ═══════════════════════════════════════ */
+      @media (max-width: 991px) {
+        .side-bar-map { margin-top: 32px; position: static; }
+      }
+      @media (max-width: 767px) {
+        .item .image { height: 180px; margin-bottom: 14px; }
+        .more-info { padding: 14px 16px !important; }
+        .more-info h4 { font-size: 12px !important; }
+        .visit-country { padding: 44px 0 50px; }
+        .section-heading h2 { font-size: 1.4rem; }
+      }
+      @media (max-width: 600px) {
+        .logo-main { font-size: 1.1rem !important; letter-spacing: 0.5px; }
+        .logo-sub  { font-size: 0.55rem !important; letter-spacing: 2px; }
+      }
+      @media (max-width: 480px) {
+        .main-caption h1 { font-size: 1.7rem !important; }
+        .main-caption h2 { font-size: 0.85rem !important; }
+        .info { gap: 6px; }
+        .info li { font-size: 11px; padding: 4px 10px; }
+      }
+      @media (max-width: 380px) {
+        .logo-main { font-size: 0.95rem !important; }
+        .logo-sub  { font-size: 0.5rem !important; letter-spacing: 1.5px; }
+      }
+    </style>
+
+  </head>
+
+<body>
+
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <a href="index.html" class="logo">
+              <span class="logo-main">TULAPOS</span>
+              <span class="logo-sub">Marine Sanctuary</span>
+            </a>
+            <ul class="nav">
+              <li><a href="index.html" class="active">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <a class='menu-trigger'><span>Menu</span></a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Banner -->
+  <section id="section-1">
+    <div class="content-slider">
+      <input type="radio" id="banner1" class="sec-1-input" name="banner" checked>
+      <input type="radio" id="banner2" class="sec-1-input" name="banner">
+      <input type="radio" id="banner3" class="sec-1-input" name="banner">
+      <input type="radio" id="banner4" class="sec-1-input" name="banner">
+      <div class="slider">
+        <div id="top-banner-1" class="banner">
+          <div class="banner-inner-wrapper header-text">
+            <div class="main-caption">
+              <h2>A Beautiful Marine Sanctuary in Siquijor</h2>
+              <h1>Tulapos Marine Sanctuary</h1>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="more-info">
+                    <div class="row">
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-clock"></i>
+                        <h4><span>Opening Hours:</span><br>8 hours</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-road"></i>
+                        <h4><span>Kilometer:</span><br>12 to 15 km.</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-home"></i>
+                        <h4><span>Entrance:</span><br>₱100</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <div class="main-button">
+                          <a href="about.html">Explore More</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="top-banner-2" class="banner">
+          <div class="banner-inner-wrapper header-text">
+            <div class="main-caption">
+              <h2>A Beautiful Marine Sanctuary in Siquijor</h2>
+              <h1>Tulapos Marine Sanctuary</h1>
+              <div class="border-button"><a href="about.html">Go There</a></div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="more-info">
+                    <div class="row">
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-clock"></i>
+                        <h4><span>Opening Hours:</span><br>8 hours</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-road"></i>
+                        <h4><span>Kilometer:</span><br>12 to 15 km.</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-home"></i>
+                        <h4><span>Entrance:</span><br>₱100</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <div class="main-button">
+                          <a href="about.html">Explore More</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="top-banner-3" class="banner">
+          <div class="banner-inner-wrapper header-text">
+            <div class="main-caption">
+              <h2>A Beautiful Marine Sanctuary in Siquijor</h2>
+              <h1>Tulapos Marine Sanctuary</h1>
+              <div class="border-button"><a href="about.html">Go There</a></div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="more-info">
+                    <div class="row">
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-clock"></i>
+                        <h4><span>Opening Hours:</span><br>8 hours</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-road"></i>
+                        <h4><span>Kilometer:</span><br>12 to 15 km.</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-home"></i>
+                        <h4><span>Entrance:</span><br>₱100</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <div class="main-button">
+                          <a href="about.html">Explore More</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="top-banner-4" class="banner">
+          <div class="banner-inner-wrapper header-text">
+            <div class="main-caption">
+              <h2>A Beautiful Marine Sanctuary in Siquijor</h2>
+              <h1>Tulapos Marine Sanctuary</h1>
+              <div class="border-button"><a href="about.html">Go There</a></div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="more-info">
+                    <div class="row">
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-clock"></i>
+                        <h4><span>Opening Hours:</span><br>8 hours</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-road"></i>
+                        <h4><span>Kilometer:</span><br>12 to 15 km.</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <i class="fa fa-home"></i>
+                        <h4><span>Entrance:</span><br>₱100</h4>
+                      </div>
+                      <div class="col-lg-3 col-sm-6 col-6">
+                        <div class="main-button">
+                          <a href="about.html">Explore More</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav>
+        <div class="controls">
+          <label for="banner1"><span class="progressbar"><span class="progressbar-fill"></span></span><span class="text">1</span></label>
+          <label for="banner2"><span class="progressbar"><span class="progressbar-fill"></span></span><span class="text">2</span></label>
+          <label for="banner3"><span class="progressbar"><span class="progressbar-fill"></span></span><span class="text">3</span></label>
+          <label for="banner4"><span class="progressbar"><span class="progressbar-fill"></span></span><span class="text">4</span></label>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Visit Section -->
+  <div class="visit-country">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="section-heading">
+            <h2>Discover Marine Life at Tulapos</h2>
+            <p>Explore the rich biodiversity of Tulapos Marine Sanctuary — home to colorful reef fish, vibrant corals, and breathtaking underwater scenery in the heart of Siquijor.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="items">
+            <div class="row">
+
+              <!-- Clownfish -->
+              <div class="col-lg-12">
+                <div class="item">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-5">
+                      <div class="image">
+                        <img src="assets/images/clown.jpg" alt="Clownfish">
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-sm-7">
+                      <div class="right-content">
+                        <h4>Clown Fish</h4>
+                        <span>Tulapos</span>
+                        <div class="main-button">
+                          <a href="gallery.html">Explore More</a>
+                        </div>
+                        <p>A clownfish is a small, brightly colored marine fish best known for its orange body with white stripes. It lives in warm ocean waters, especially in coral reefs in the Pacific and Indian Oceans.</p>
+                        <ul class="info">
+                          <li><i class="fa fa-user"></i> 8.66 Mil People</li>
+                          <li><i class="fa fa-globe"></i> 41.290 km²</li>
+                          <li><i class="fa fa-home"></i> $1.100.200</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Damselfish -->
+              <div class="col-lg-12">
+                <div class="item">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-5">
+                      <div class="image">
+                        <img src="assets/images/Damselfish.jpg" alt="Damselfish">
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-sm-7">
+                      <div class="right-content">
+                        <h4>Damselfish</h4>
+                        <span>Tulapos</span>
+                        <div class="main-button">
+                          <a href="gallery.html">Explore More</a>
+                        </div>
+                        <p>Damselfish are very important reef fish because they help shape coral reef ecosystems. They are known for being small but extremely bold, fiercely defending their territory against intruders much larger than themselves.</p>
+                        <ul class="info">
+                          <li><i class="fa fa-user"></i> 44.48 Mil People</li>
+                          <li><i class="fa fa-globe"></i> 275.400 km²</li>
+                          <li><i class="fa fa-home"></i> $946.000</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Parrotfish -->
+              <div class="col-lg-12">
+                <div class="item last-item">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-5">
+                      <div class="image">
+                        <img src="assets/images/parrotfish.jpg" alt="Parrotfish">
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-sm-7">
+                      <div class="right-content">
+                        <h4>Parrotfish</h4>
+                        <span>Tulapos</span>
+                        <div class="main-button">
+                          <a href="gallery.html">Explore More</a>
+                        </div>
+                        <p>Parrotfish are colorful reef fish found in tropical oceans like the Caribbean and Indo-Pacific. They get their name from their beak-like teeth used to scrape algae off coral and rocks, playing a vital role in reef health.</p>
+                        <ul class="info">
+                          <li><i class="fa fa-user"></i> 67.41 Mil People</li>
+                          <li><i class="fa fa-globe"></i> 551.500 km²</li>
+                          <li><i class="fa fa-home"></i> $425.600</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pagination -->
+             
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="col-lg-4">
+          <div class="side-bar-map">
+            <div class="row">
+              <div class="col-lg-12">
+                <div id="map">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3937.55006725144!2d123.63859847413444!3d9.284431690787454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33ab1a5d08b0deb9%3A0x6abd68039b17f127!2sTulapos%20Marine%20Sanctuary!5e0!3m2!1sen!2sph!4v1778116471041!5m2!1sen!2sph"
+                    width="100%" height="550px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2036 <a href="#">Tulapos Marine Sanctuary</a>. All rights reserved.
+          <br>Design: <a href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/wow.js"></script>
+  <script src="assets/js/tabs.js"></script>
+  <script src="assets/js/popup.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+  <script>
+    function bannerSwitcher() {
+      var next = $('.sec-1-input').filter(':checked').next('.sec-1-input');
+      if (next.length) next.prop('checked', true);
+      else $('.sec-1-input').first().prop('checked', true);
+    }
+    var bannerTimer = setInterval(bannerSwitcher, 5000);
+    $('nav .controls label').click(function() {
+      clearInterval(bannerTimer);
+      bannerTimer = setInterval(bannerSwitcher, 5000);
+    });
+  </script>
+
+</body>
+</html>

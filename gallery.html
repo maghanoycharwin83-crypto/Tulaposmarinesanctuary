@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Tulapos Marine Sanctuary</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+
+  <style>
+    .header-area {
+      background: linear-gradient(135deg, #0a2342 0%, #0d3b6e 60%, #0e5a8a 100%) !important;
+      box-shadow: 0 4px 24px rgba(10,35,66,0.35) !important;
+      border-bottom: 2px solid rgba(0,180,216,0.3) !important;
+    }
+    .logo {
+      display: flex !important; flex-direction: column !important;
+      text-decoration: none !important; line-height: 1.15 !important;
+    }
+    .logo-main {
+      font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 800;
+      color: #ffffff !important; letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3); white-space: nowrap;
+    }
+    .logo-sub {
+      font-family: 'Poppins', sans-serif; font-size: 0.68rem; font-weight: 500;
+      color: #ffffff !important; letter-spacing: 3px; text-transform: uppercase;
+      opacity: 0.85; white-space: nowrap;
+    }
+    .main-nav .nav li a {
+      color: rgba(255,255,255,0.85) !important; font-weight: 500; font-size: 14px;
+      letter-spacing: 0.5px; transition: color 0.2s; position: relative;
+    }
+    .main-nav .nav li a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: #00b4d8; transition: width 0.25s; border-radius: 2px;
+    }
+    .main-nav .nav li a:hover::after, .main-nav .nav li a.active::after { width: 100%; }
+    .main-nav .nav li a:hover, .main-nav .nav li a.active { color: #90e0ef !important; }
+
+    /* ── PAGE BACKGROUND ── */
+    .gallery-page {
+      background: url('assets/images/background-sea.jpg') center center / cover no-repeat fixed;
+      min-height: 100vh;
+      padding: 100px 0 70px;
+      position: relative;
+    }
+    .gallery-page::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(5, 20, 50, 0.58); pointer-events: none;
+    }
+    .gallery-page .container { position: relative; z-index: 1; }
+
+    .page-title {
+      font-family: 'Poppins', sans-serif; font-size: 3rem; font-weight: 800;
+      color: #fff; text-align: center; margin-bottom: 8px; letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 3px 18px rgba(0,0,0,0.7);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .page-sub {
+      text-align: center; color: rgba(255,255,255,0.75);
+      font-size: 12px; margin-bottom: 24px;
+    }
+
+    /* ── EACH CAROUSEL BLOCK ── */
+    .carousel-block { margin-bottom: 48px; }
+    .carousel-block-title {
+      font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700;
+      color: #fff; margin-bottom: 16px; letter-spacing: 0.5px;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+      padding-left: 4px; border-left: 4px solid #00b4d8; padding-left: 12px;
+    }
+
+    .fish-carousel-outer {
+      position: relative; user-select: none;
+    }
+    .fish-carousel-viewport {
+      overflow: hidden; border-radius: 16px; cursor: grab;
+    }
+    .fish-carousel-viewport.dragging { cursor: grabbing; }
+    .fish-carousel-track {
+      display: flex;
+      transition: transform 0.42s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+    .fish-carousel-track.no-transition { transition: none; }
+
+    /* ── FISH CARD — exactly 2 visible ── */
+    .fish-card {
+      flex: 0 0 calc(33.333% - 14px);
+      margin: 0 7px;
+      background: #fff; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      transition: transform .2s, box-shadow .2s; cursor: pointer;
+    }
+    .fish-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.18);
+    }
+    .fish-card img {
+      width: 100%; height: 200px; object-fit: cover; display: block;
+    }
+    .fish-card-body { padding: 14px 18px 18px; }
+    .fish-card-name {
+      font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700;
+      color: #1a1a2e; margin-bottom: 5px;
+    }
+    .fish-card-snippet {
+      font-size: 12px; color: #777; line-height: 1.6; margin-bottom: 10px;
+      display: -webkit-box; -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .fish-card-tags {
+      display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px;
+    }
+    .fish-card-tag {
+      background: #f0f4ff; color: #3a3a6e;
+      font-size: 10px; font-weight: 500;
+      padding: 3px 10px; border-radius: 99px; white-space: nowrap;
+    }
+    .btn-learn-more {
+      display: inline-block; padding: 9px 20px;
+      background: #1a1a2e; color: #fff; border-radius: 8px;
+      font-size: 13px; font-weight: 600; border: none; cursor: pointer;
+      transition: background .2s; font-family: 'Poppins', sans-serif;
+      touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+      width: 100%; text-align: center;
+    }
+    .btn-learn-more:hover, .btn-learn-more:active { background: #2d2d5e; }
+
+    /* ── ARROWS ── */
+    .carousel-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border-radius: 50%;
+      background: #1a1a2e; color: #fff; border: none; font-size: 20px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      z-index: 10; box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: background .2s, transform .15s;
+      touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+    }
+    .carousel-arrow:hover { background: #2d2d5e; transform: translateY(-50%) scale(1.08); }
+    .carousel-arrow:active { transform: translateY(-50%) scale(0.96); }
+    .carousel-arrow.prev { left: -22px; }
+    .carousel-arrow.next { right: -22px; }
+    .carousel-arrow:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+
+    /* ── DOTS ── */
+    .carousel-dots {
+      display: flex; justify-content: center; gap: 8px; margin-top: 16px; flex-wrap: wrap;
+    }
+    .carousel-dots button {
+      width: 9px; height: 9px; border-radius: 50%; border: none; padding: 0;
+      background: rgba(255,255,255,0.35); cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .carousel-dots button.active { background: #fff; transform: scale(1.35); }
+
+    /* ── MODAL ── */
+    .fish-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.75); z-index: 9999;
+      align-items: center; justify-content: center; padding: 16px;
+    }
+    .fish-modal-overlay.active { display: flex; }
+    .fish-modal {
+      background: #fff; border-radius: 18px; max-width: 680px; width: 100%;
+      overflow: hidden; position: relative; animation: modalIn .25s ease;
+      max-height: 90vh; overflow-y: auto;
+    }
+    @keyframes modalIn {
+      from { transform: translateY(30px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    .fish-modal img { width: 100%; height: 260px; object-fit: cover; }
+    .fish-modal-body { padding: 28px 32px 32px; }
+    .fish-modal-close {
+      position: absolute; top: 14px; right: 16px;
+      background: rgba(0,0,0,0.5); border: none; color: #fff;
+      width: 36px; height: 36px; border-radius: 50%; font-size: 18px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      z-index: 10; touch-action: manipulation;
+    }
+    .fish-modal-close:hover { background: rgba(0,0,0,0.75); }
+    .fish-modal-name { font-family: 'Poppins', sans-serif; font-size: 1.6rem; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
+    .fish-modal-desc { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 18px; }
+    .fish-modal-status-label { font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+    .fish-status-badge { display: inline-block; padding: 5px 16px; border-radius: 99px; font-size: 13px; font-weight: 600; }
+    .status-lc { background: #d4edda; color: #155724; }
+    .status-nt { background: #d1ecf1; color: #0c5460; }
+    .status-vu { background: #fff3cd; color: #856404; }
+    .status-en { background: #fde8c8; color: #7d3c00; }
+    .status-cr { background: #f8d7da; color: #721c24; }
+    .fish-modal-facts { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .fish-fact-chip { background: #f0f4ff; border-radius: 8px; padding: 6px 14px; font-size: 12px; color: #3a3a6e; font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: linear-gradient(135deg, #0a2342 0%, #0d3b6e 100%) !important;
+      padding: 28px 0 !important; margin-top: 0 !important;
+      border-top: 2px solid rgba(0,180,216,0.25);
+    }
+    footer p { color: rgba(255,255,255,0.65) !important; font-size: 13px !important; text-align: center !important; margin: 0 !important; line-height: 1.9 !important; }
+    footer a { color: #90e0ef !important; text-decoration: none !important; font-weight: 600 !important; transition: color 0.2s !important; }
+    footer a:hover { color: #ffffff !important; }
+
+    @media (max-width: 600px) {
+      .logo-main { font-size: 1.1rem !important; }
+      .logo-sub  { font-size: 0.55rem !important; }
+      .carousel-arrow { display: none; }
+      .fish-card img { height: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <a href="index.html" class="logo">
+              <span class="logo-main">TULAPOS</span>
+              <span class="logo-sub">Marine Sanctuary</span>
+            </a>
+            <ul class="nav">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="gallery.html" class="active">Gallery</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <a class='menu-trigger'><span>Menu</span></a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Gallery Page -->
+  <div class="gallery-page">
+    <div class="container">
+      <p class="page-title">Marine Sanctuary Gallery</p>
+      <p class="page-sub">Click on any fish to learn more about its habitat, behavior, and conservation status.</p>
+
+      <!-- 5 carousel blocks will be injected here -->
+      <div id="carouselsContainer"></div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright &copy; 2036 <a href="#">Tulapos Marine Sanctuary</a>. All rights reserved.
+          <br>Design: <a href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="fish-modal-overlay" id="fishModal">
+    <div class="fish-modal">
+      <button class="fish-modal-close" id="modalClose">&#10005;</button>
+      <img src="" alt="" id="modalImg">
+      <div class="fish-modal-body">
+        <p class="fish-modal-name" id="modalName"></p>
+        <p class="fish-modal-desc" id="modalDesc"></p>
+        <p class="fish-modal-status-label">Conservation Status</p>
+        <span class="fish-status-badge" id="modalStatus"></span>
+        <div class="fish-modal-facts" id="modalFacts"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/wow.js"></script>
+  <script src="assets/js/tabs.js"></script>
+  <script src="assets/js/popup.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+  <script>
+  // ── ALL 30 FISH (6 facts each) ───────────────────────────────────────────
+  const allFish = [
+    { name:"Barracuda",    img:"assets/images/barracuda.jfif",      desc:"The barracuda is a large, predatory fish known for its fearsome appearance and razor-sharp teeth. Found in tropical and subtropical oceans, it is a fast swimmer and an apex predator in reef environments.", status:"Least Concern",  statusClass:"status-lc", facts:["Up to 1.8m long","Speed: 43 km/h","Habitat: Coral Reefs","Lifespan: 14 years","Diet: Small fish","Solitary hunter"] },
+    { name:"Clownfish",    img:"assets/images/clown.jpg",       desc:"Famous for their vibrant orange and white stripes, clownfish live in a symbiotic relationship with sea anemones. They are immune to the anemone's sting and use it for protection.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 7–15 cm","Lifespan: 6–10 years","Habitat: Anemones","All born male","Diet: Algae & zooplankton","30+ species"] },
+    { name:"Parrotfish",   img:"assets/images/parrotfish.jpg",       desc:"Parrotfish are colorful reef fish that use their beak-like teeth to scrape algae from coral. They play a vital role in coral reef ecosystems by producing sand — up to 450 kg per year!", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 30–120 cm","Sand producers","Habitat: Coral Reefs","Lifespan: 5–7 years","Sleeps in mucus","Sex changer"] },
+    { name:"Butterflyfish",img:"assets/images/butterflyfish.jpg",    desc:"Butterflyfish are among the most beautiful fish in the ocean, with distinctive bright patterns. They are often found in pairs and are strongly associated with coral reef health.", status:"Near Threatened",statusClass:"status-nt", facts:["Size: 12–22 cm","Monogamous pairs","Habitat: Coral Reefs","130+ species","Diet: Coral polyps","Lifespan: ~7 years"] },
+    { name:"Triggerfish",  img:"assets/images/triggerfish.jpg",      desc:"Triggerfish are aggressive and territorial fish with powerful jaws capable of crushing hard-shelled prey. They are known to attack divers who enter their nesting territory.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 20–75 cm","Powerful jaws","Habitat: Rocky Reefs","Territorial nest","Diet: Crustaceans","Can bite divers"] },
+    { name:"Razorfish",    img:"assets/images/razorfish.jfif",       desc:"Razorfish are unique fish that swim vertically, head-down, and can rapidly bury themselves in sand when threatened. They are closely related to pipefish and seahorses.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 10–15 cm","Swims vertically","Habitat: Sandy Bottoms","Related to seahorse","Burrows in sand","Silvery body"] },
+    { name:"Jackfish",     img:"assets/images/jackfish.jfif",        desc:"Jackfish, or trevallies, are powerful schooling fish often seen in massive formations called 'tornados' around reef pinnacles. They are prized game fish worldwide.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 30–100 cm","Schools of thousands","Habitat: Open Water","Fast swimmer","Prized game fish","Spawns offshore"] },
+    { name:"Surgeonfish",  img:"assets/images/surgeonfish.jpg",      desc:"Surgeonfish get their name from the sharp, scalpel-like spines near their tail. They are important grazers on coral reefs, keeping algae growth in check.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 15–40 cm","Sharp tail spines","Habitat: Coral Reefs","Diet: Algae","80+ species","Lifespan: ~30 years"] },
+    { name:"Angelfish",    img:"assets/images/angelfish.jpg",        desc:"Marine angelfish are stunning, disc-shaped fish with vivid colors and bold patterns. They are territorial and feed primarily on sponges and algae in tropical reefs.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 20–40 cm","Lifespan: 10–15 years","Habitat: Coral Reefs","Diet: Sponges","86 species","Changes color with age"] },
+    { name:"Damselfish",   img:"assets/images/damselfish.jpg",       desc:"Damselfish are small but fiercely territorial reef fish. Some species farm algae patches, aggressively defending their 'garden' from any intruder, including much larger fish and divers.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 5–14 cm","Algae farmers","Habitat: Coral Reefs","Very territorial","250+ species","Lifespan: ~6 years"] },
+    { name:"Moorish Idol", img:"assets/images/moorish idol.jfif",    desc:"The Moorish idol is an iconic reef fish recognized by its dramatic black, white, and yellow banding and elongated dorsal fin. It feeds mainly on sponges and algae.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: up to 23 cm","Poor aquarium fish","Habitat: Coral Reefs","Only 1 species","Diet: Sponges","Lifespan: ~7 years"] },
+    { name:"Lionfish",     img:"assets/images/lionfish.jfif",        desc:"Lionfish are venomous, ornate predators native to the Indo-Pacific. Their flamboyant spines deliver a painful sting. As an invasive species in the Atlantic, they pose a serious threat to local ecosystems.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 25–40 cm","Venomous spines","Invasive in Atlantic","Lifespan: ~15 years","No natural predator","Eats 30+ fish species"] },
+    { name:"Goby",         img:"assets/images/goby.jfif",            desc:"Gobies are one of the largest families of fish with over 2,000 species. Many form remarkable partnerships with shrimp, sharing burrows in the sand — the shrimp digs while the goby keeps watch.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 1–30 cm","Shrimp partners","Habitat: Sandy Bottoms","2,000+ species","Pelvic fin sucker","Lifespan: ~5 years"] },
+    { name:"Wrasse",       img:"assets/images/wrasses.jpg",          desc:"Wrasses are diverse, colorful reef fish known for their role as 'cleaner fish.' They set up cleaning stations where larger fish come to have parasites removed.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 5–230 cm","Cleaner stations","Habitat: Coral Reefs","600+ species","Sex changer","Lifespan: up to 30 yrs"] },
+    { name:"Sweetlips",    img:"assets/images/sweetlips.jfif",       desc:"Sweetlips are recognizable by their thick, fleshy lips and bold spotted or striped patterns. Juveniles look dramatically different from adults and perform a distinctive wiggling swim.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 30–100 cm","Bold patterns","Habitat: Coral Reefs","Wiggling juvenile","Nocturnal feeder","Diet: Invertebrates"] },
+    { name:"Snapper",      img:"assets/images/snapper.jfif",         desc:"Snappers are robust, schooling predators found throughout tropical reefs. They are among the most commercially important reef fish and play a key role in reef food webs.", status:"Vulnerable",     statusClass:"status-vu", facts:["Size: 30–100 cm","Commercially fished","Habitat: Coral Reefs","100+ species","Lifespan: up to 20 yrs","Diet: Fish & squid"] },
+    { name:"Grouper",      img:"assets/images/grouperfish.jpg",      desc:"Groupers are large, slow-moving ambush predators. They are protogynous hermaphrodites — all individuals start as females and the dominant one can change to male.", status:"Vulnerable",     statusClass:"status-vu", facts:["Size: up to 270 cm","Sex changers","Habitat: Coral Reefs","Ambush predator","Lifespan: ~25 years","Commercially important"] },
+    { name:"Rabbitfish",   img:"assets/images/rabbitfish.jfif",      desc:"Rabbitfish have small rabbit-like mouths and venomous dorsal spines. They are important herbivores on coral reefs and are often the first fish to re-graze algae after a disturbance.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 25–40 cm","Venomous spines","Habitat: Coral Reefs","Diet: Algae","Travels in pairs","Lifespan: ~7 years"] },
+    { name:"Pufferfish",   img:"assets/images/pufferfish.jfif",      desc:"Pufferfish can inflate themselves to several times their normal size as a defense mechanism. They contain tetrodotoxin, one of the most potent neurotoxins in nature, yet are considered a delicacy in Japan.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 2–90 cm","Highly toxic","Habitat: Coastal Waters","Inflates 3x size","120+ species","Lifespan: ~10 years"] },
+    { name:"Unicornfish",  img:"assets/images/unicornfish.jfif",     desc:"Unicornfish are named for the prominent horn-like protrusion on their forehead. They are important herbivores that help keep reef algae in balance.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 40–70 cm","Horn-like protrusion","Habitat: Coral Reefs","Diet: Algae","Travels in schools","Lifespan: ~30 years"] },
+    { name:"Fusilier",     img:"assets/images/fusilier.jfif",        desc:"Fusiliers are sleek, fast-swimming fish that form enormous schools in open water above reefs. Their vivid blue, yellow, and pink colors make them a spectacular sight for divers.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 15–35 cm","Large schools","Habitat: Open Reef Water","Vivid coloration","Diet: Zooplankton","Lifespan: ~7 years"] },
+    { name:"Scorpionfish", img:"assets/images/scorpionfish.jfif",    desc:"Scorpionfish are masters of camouflage, blending perfectly with coral and rock. They are highly venomous ambush predators that remain motionless until prey swims within striking distance.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 15–40 cm","Expert camouflage","Highly venomous","Ambush predator","200+ species","Lifespan: ~15 years"] },
+    { name:"Needlefish",   img:"assets/images/needlefish.jfif",      desc:"Needlefish have long, slender bodies and needle-like beaks. They patrol the water surface at high speed and can accidentally injure swimmers and divers.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 30–120 cm","Surface dwellers","Speed swimmers","Can injure humans","Diet: Small fish","Lifespan: ~8 years"] },
+    { name:"Batfish",      img:"assets/images/batfish.jfif",         desc:"Batfish are large, disc-shaped fish with dramatically extended dorsal and anal fins. Juveniles mimic floating dead leaves for protection, while adults school in open water.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: up to 70 cm","Leaf mimics (juvenile)","Habitat: Coral Reefs","Disc-shaped body","Schools as adults","Lifespan: ~12 years"] },
+    { name:"Trevally",     img:"assets/images/trevally.jfif",        desc:"Trevallies are powerful, fast-moving predators that hunt in coordinated groups. Giant trevally are known for leaping from the water to catch seabirds in flight.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: up to 170 cm","Hunts seabirds","Habitat: Open Water","Speed: 50+ km/h","Prized sport fish","Lifespan: ~24 years"] },
+    { name:"Hawkfish",     img:"assets/images/hawkfish.jfif",        desc:"Hawkfish perch motionless on coral heads, scanning their territory like a hawk. They lack a swim bladder and must rest on the substrate.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 5–25 cm","No swim bladder","Habitat: Coral Heads","Perches motionless","35+ species","Lifespan: ~5 years"] },
+    { name:"Bannerfish",   img:"assets/images/bannerfish.jfif",      desc:"Bannerfish are elegant butterflyfish relatives with a tall, flowing dorsal fin that resembles a banner or pennant. They are often seen in pairs feeding on zooplankton.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 18–25 cm","Pennant-like fin","Habitat: Coral Reefs","Travels in pairs","Diet: Zooplankton","Lifespan: ~7 years"] },
+    { name:"Pipefish",     img:"assets/images/pipefish.jfif",        desc:"Pipefish are close relatives of seahorses, sharing their unusual trait of male pregnancy. They are superb at camouflage among seagrass.", status:"Near Threatened",statusClass:"status-nt", facts:["Size: 2–65 cm","Male pregnancy","Habitat: Seagrass Beds","200+ species","Expert camouflage","Lifespan: ~3 years"] },
+    { name:"Cardinalfish", img:"assets/images/cardinalfish.jfif",    desc:"Cardinalfish are small, nocturnal reef fish. Many species are mouthbrooders — the male incubates the eggs in his mouth until they hatch.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 5–15 cm","Mouthbrooders","Nocturnal","300+ species","Diet: Plankton","Lifespan: ~3 years"] },
+    { name:"Squirrelfish", img:"assets/images/squirrelfish.jfif",    desc:"Squirrelfish are nocturnal reef fish with large eyes adapted for low-light hunting. They hide in reef crevices during the day and emerge at night to feed.", status:"Least Concern",  statusClass:"status-lc", facts:["Size: 15–30 cm","Large eyes","Nocturnal hunters","Red coloration","Diet: Crustaceans","Lifespan: ~10 years"] }
+  ];
+
+  // ── 5 CAROUSELS: 6 fish each ─────────────────────────────────────────────
+  const carouselGroups = [
+    { title: "Predators of the Reef",   fish: [0,1,2,3,4,5]   },
+    { title: "Schooling & Open Water",  fish: [6,7,8,9,10,11]  },
+    { title: "Bottom Dwellers",         fish: [12,13,14,15,16,17] },
+    { title: "Venomous & Camouflaged",  fish: [18,19,20,21,22,23] },
+    { title: "Rare & Fascinating",      fish: [24,25,26,27,28,29] }
+  ];
+
+  const container = document.getElementById('carouselsContainer');
+  const carouselStates = [];
+
+  carouselGroups.forEach((group, gIdx) => {
+    const fishList = group.fish.map(i => allFish[i]);
+
+    // Build block HTML
+    const blockId = `cb-${gIdx}`;
+    const block = document.createElement('div');
+    block.className = 'carousel-block';
+    block.innerHTML = `
+      <p class="carousel-block-title">${group.title}</p>
+      <div class="fish-carousel-outer">
+        <button class="carousel-arrow prev" id="${blockId}-prev" aria-label="Previous">&#8249;</button>
+        <div class="fish-carousel-viewport" id="${blockId}-vp">
+          <div class="fish-carousel-track" id="${blockId}-track"></div>
+        </div>
+        <button class="carousel-arrow next" id="${blockId}-next" aria-label="Next">&#8250;</button>
+      </div>
+      <div class="carousel-dots" id="${blockId}-dots"></div>
+    `;
+    container.appendChild(block);
+
+    const track = document.getElementById(`${blockId}-track`);
+
+    // Build 6 cards
+    fishList.forEach((fish, localIdx) => {
+      const globalIdx = group.fish[localIdx];
+      const tagsHTML = fish.facts.slice(0,3).map(f => `<span class="fish-card-tag">${f}</span>`).join('');
+      const card = document.createElement('div');
+      card.className = 'fish-card';
+      card.innerHTML = `
+        <img src="${fish.img}" alt="${fish.name}" onerror="this.src='assets/images/surgeonfish.jpg'" loading="lazy">
+        <div class="fish-card-body">
+          <p class="fish-card-name">${fish.name}</p>
+          <p class="fish-card-snippet">${fish.desc}</p>
+          <div class="fish-card-tags">${tagsHTML}</div>
+          <button class="btn-learn-more" onclick="openModal(${globalIdx});event.stopPropagation()">Learn More</button>
+        </div>`;
+      track.appendChild(card);
+    });
+
+    // State: 2 visible per slide → 3 slides total (for 6 fish)
+    const state = { current: 0, total: 2 }; // 6 fish / 3 visible = 2 slides
+    carouselStates.push(state);
+
+    // Build dots
+    function buildDots() {
+      const dotsEl = document.getElementById(`${blockId}-dots`);
+      dotsEl.innerHTML = '';
+      for (let i = 0; i < state.total; i++) {
+        const btn = document.createElement('button');
+        btn.setAttribute('aria-label', 'Slide ' + (i+1));
+        if (i === state.current) btn.classList.add('active');
+        btn.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(btn);
+      }
+    }
+
+    function goTo(n) {
+      state.current = Math.max(0, Math.min(n, state.total - 1));
+      const cardEl = track.querySelector('.fish-card');
+      const cardWidth = cardEl.offsetWidth + 14; // margin 7px each side
+      track.style.transform = `translateX(-${state.current * 3 * cardWidth}px)`;
+      document.querySelectorAll(`#${blockId}-dots button`).forEach((b, i) =>
+        b.classList.toggle('active', i === state.current));
+      document.getElementById(`${blockId}-prev`).disabled = state.current === 0;
+      document.getElementById(`${blockId}-next`).disabled = state.current >= state.total - 1;
+    }
+
+    document.getElementById(`${blockId}-prev`).addEventListener('click', () => goTo(state.current - 1));
+    document.getElementById(`${blockId}-next`).addEventListener('click', () => goTo(state.current + 1));
+
+    // Mouse drag
+    const vp = document.getElementById(`${blockId}-vp`);
+    let dragStartX = 0, isDragging = false, dragMoved = false;
+
+    vp.addEventListener('mousedown', (e) => {
+      isDragging = true; dragMoved = false;
+      dragStartX = e.clientX;
+      vp.classList.add('dragging');
+      track.classList.add('no-transition');
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const diff = e.clientX - dragStartX;
+      if (Math.abs(diff) > 5) dragMoved = true;
+      const cardEl = track.querySelector('.fish-card');
+      const cardWidth = cardEl.offsetWidth + 14;
+      const base = state.current * 3 * cardWidth;
+      track.style.transform = `translateX(-${base - diff}px)`;
+    });
+    document.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      vp.classList.remove('dragging');
+      track.classList.remove('no-transition');
+      const diff = e.clientX - dragStartX;
+      if (dragMoved && Math.abs(diff) > 60) goTo(state.current + (diff < 0 ? 1 : -1));
+      else goTo(state.current);
+    });
+    vp.addEventListener('click', (e) => {
+      if (dragMoved) { e.stopImmediatePropagation(); dragMoved = false; }
+    }, true);
+
+    // Touch
+    let tsX = 0;
+    vp.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; }, { passive: true });
+    vp.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - tsX;
+      if (Math.abs(dx) > 50) goTo(state.current + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
+    buildDots();
+    goTo(0);
+  });
+
+  // Arrow keys — control whichever carousel is in viewport
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('fishModal').classList.contains('active')) return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      const blocks = document.querySelectorAll('.carousel-block');
+      let closestIdx = 0, closestDist = Infinity;
+      blocks.forEach((bl, i) => {
+        const rect = bl.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const dist = Math.abs(center - window.innerHeight / 2);
+        if (dist < closestDist) { closestDist = dist; closestIdx = i; }
+      });
+      const s = carouselStates[closestIdx];
+      const blockId = `cb-${closestIdx}`;
+      const goToFn = (n) => {
+        s.current = Math.max(0, Math.min(n, s.total - 1));
+        const track = document.getElementById(`${blockId}-track`);
+        const cardEl = track.querySelector('.fish-card');
+        const cardWidth = cardEl.offsetWidth + 14;
+        track.style.transform = `translateX(-${s.current * 3 * cardWidth}px)`;
+        document.querySelectorAll(`#${blockId}-dots button`).forEach((b, i) =>
+          b.classList.toggle('active', i === s.current));
+        document.getElementById(`${blockId}-prev`).disabled = s.current === 0;
+        document.getElementById(`${blockId}-next`).disabled = s.current >= s.total - 1;
+      };
+      if (e.key === 'ArrowRight') goToFn(s.current + 1);
+      else goToFn(s.current - 1);
+    }
+  });
+
+  // ── MODAL ────────────────────────────────────────────────────────────────
+  function openModal(i) {
+    const f = allFish[i];
+    document.getElementById('modalImg').src = f.img;
+    document.getElementById('modalImg').onerror = function(){ this.src='assets/images/surgeonfish.jpg'; };
+    document.getElementById('modalImg').alt = f.name;
+    document.getElementById('modalName').textContent = f.name;
+    document.getElementById('modalDesc').textContent = f.desc;
+    const badge = document.getElementById('modalStatus');
+    badge.textContent = f.status;
+    badge.className = 'fish-status-badge ' + f.statusClass;
+    document.getElementById('modalFacts').innerHTML =
+      f.facts.map(fc => `<span class="fish-fact-chip">${fc}</span>`).join('');
+    document.getElementById('fishModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('fishModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('fishModal').addEventListener('click', function(e){
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+
+</body>
+</html>
